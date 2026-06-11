@@ -1,0 +1,12 @@
+Here is Producut Summary:
+
+ID: P001 	 Pong		Quantity: 1000		Value: $1000.000000
+ID: P003 	 Book		Quantity: 82		Value: $328.000000
+ID: E001 	 Pong		Quantity: 100		Value: $20.000000
+ID: 4 	 car		Quantity: 4		Value: $216.000000
+
+-------------------------------------------------------
+Total Products      : 4
+Total Quantity      : 1186
+Total Stock Value   : $1564.000000
+=======================================================
