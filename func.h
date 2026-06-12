@@ -58,7 +58,7 @@ void manuforAdmin() {
     cout << "  [4] Update Stock\n";
     cout << "  [5] Delete Stock\n";
     cout << "  [6] Generate Report\n";
-    cout << "  [7] Back to Role Selection\n";
+    cout << "  [7] Back to Operator\n";
     cout << "  [0] Exit Program\n\n";
 
     cout << "---------------------------------------------------------------------\n";
