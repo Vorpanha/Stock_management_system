@@ -3,6 +3,7 @@
 #include <conio.h> //used for press any key fun which it call _getch()
 #include <windows.h>
 #include "struct_func.h"
+#include "stream.h"
 #include "func.h"
 
 using namespace std;
@@ -17,14 +18,10 @@ int main() {
     
     system("cls"); //to cls any cls in terminal
     
-    int choice;
     List *L1 = createEmptyList();
 
     loadFromCSV(L1);
     handle_miss_input(L1);
-
-   
-    return 0;
 }
 
 void handle_miss_input(List *L1) {

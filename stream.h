@@ -61,7 +61,7 @@ void loadFromCSV(List* ls){
             getline(s, quantity, ',');
             getline(s, price, ',');
 
-            Product* p = new Product{id, name,stoi(quantity), stof(price), nullptr};
+            Product* p = new Product{id, name, stoi(quantity), stof(price), nullptr};
 
             if (ls->n == 0) ls->head = p;
             else ls->tail->next = p;
@@ -147,30 +147,4 @@ void generateReport(List *ls,int totalProducts,int totalQuantity,float totalValu
     file<<report;
     file.close();    
 
-}
-
-void swapData(Product *a, Product *b) {
-    swap(a->Product_ID, b->Product_ID);
-    swap(a->Product_Name, b->Product_Name);
-    swap(a->Quantity, b->Quantity);
-    swap(a->Unit_Price, b->Unit_Price);
-}
-
-void sortByID(List *ls)
-{
-    if(ls->head == NULL)
-        return;
-
-    Product *current;
-    Product *index;
-
-    for(current = ls->head; current != NULL; current = current->next) {
-        for(index = current->next; index != NULL; index = index->next) {
-            if(current->Product_ID > index->Product_ID) {
-                swapData(current, index);
-            }
-        }
-    }
-
-    saveToCSV(ls->head);
 }
