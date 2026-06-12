@@ -1,15 +1,51 @@
-#About_us
-This is the study project with our memebers
-Our memebers are:
-1.NUTH KIMHONG
-2.VOR PHANHA
-3.PEN MENGHONG
-4.SOUNG VICHAKA
+# 📘 About Us
+This is a study project created by our team members:
 
-﻿# Stock_management_system
- Stock management system is a sofware that used for monitor products within a stocks.
- This software is capables to generate report, data file, update, remove, search, and add the data.
- We have 2 mode which are Admin and User.
- Admin is capable to view, generate report, data file, update, remove, search, and add the data.
- User is limited to only view, generate report, search.
- 
+1. **NUTH KIMHONG**  
+2. **VOR PHANHA**  
+3. **PEN MENGHONG**  
+4. **SOUNG VICHAKA**
+
+---
+
+# 📦 Stock Management System
+
+The **Stock Management System** is a software project designed to monitor and manage products within a stock inventory.  
+
+It provides functionality to **generate reports, manage data files, update records, remove items, search entries, and add new data**.
+
+---
+
+## 👥 Modes of Operation
+We have two modes of access:
+
+- **Admin Mode**  
+  - View products  
+  - Generate reports  
+  - Manage data files  
+  - Update records  
+  - Remove items  
+  - Search entries  
+  - Add new data  
+
+- **User Mode**  
+  - View products  
+  - Generate reports  
+  - Search entries  
+
+---
+
+## ✨ Features
+- **Generate Report**: Summarize product information in stock.  
+- **Data File Management**: Save and load product data from CSV files.  
+- **Update Data**: Modify product details such as quantity or price.  
+- **Remove Data**: Delete products from the inventory.  
+- **Search Data**: Quickly find products by ID or name.  
+- **Add Data**: Insert new products into the system.  
+
+---
+
+## 🚀 How to Run
+1. Compile the program:
+   ```bash
+   g++ main.cpp -o main
