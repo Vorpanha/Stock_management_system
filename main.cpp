@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cscapi.h>
-#include <conio.h> 
+#include <conio.h> //used for press any key fun which it call _getch()
 #include <windows.h>
 #include "struct_func.h"
 #include "func.h"
@@ -9,19 +9,55 @@ using namespace std;
 
 //--aids ui funcs
 void decide_to_stop();
+void handle_miss_input(List *L1);
+void for_admin(List *L1);
+void for_user(List *L1);
 
 int main() {
-    for_user_or_admin();
-    int choice;
-
-    system("cls"); //to clear any cls in terminal
     
+    system("cls"); //to cls any cls in terminal
+    
+    int choice;
     List *L1 = createEmptyList();
 
     loadFromCSV(L1);
+    handle_miss_input(L1);
 
-    while(choice != 7) {
-        manu();
+   
+    return 0;
+}
+
+void handle_miss_input(List *L1) {
+    int choice;
+    for_user_or_admin();
+    cin>>choice;
+    switch(choice){
+        case 1:
+            system("cls");
+            for_admin(L1);
+        break;
+        case 2:
+            system("cls");
+            for_user(L1);
+            break;
+        case 0:
+            system("cls");
+            Exit();
+        break;
+        default:
+            system("cls");
+            cout<<"Invalid choice!";
+            Sleep(1000);
+            system("cls");
+            handle_miss_input(L1);
+        break;
+    }
+}
+
+void for_admin(List *L1) {
+    int choice = -1;
+    while(choice != 0) {
+        manuforAdmin();
         cin >> choice;
         system("cls");
         if(choice == 1) {
@@ -33,7 +69,7 @@ int main() {
         } else if(choice == 3) {
             searchStock(L1);
             decide_to_stop();
-        }else if(choice==4) {
+        } else if(choice==4) {
             updateStock(L1);
             Sleep(1500);
         } else if(choice == 5) {
@@ -43,14 +79,10 @@ int main() {
             generateReport(L1);
             Sleep(1000);
         } else if(choice == 7) {
-            cout << "=======================================================\n";
-            cout << "                    EXIT PROGRAM\n";
-            cout << "=======================================================\n";
-            cout << "\nThank you for using the system.\n";
-            cout << "Program terminated successfully.\n";
-            cout << "=======================================================\n";
+            handle_miss_input(L1);
             Sleep(1000);
-            exit(0);
+        } else if(choice == 0) {
+            Exit();
         } else {
             cout << "\n-------------------------------------------------------\n";
             cout << "Invalid choice. Please try again.\n";
@@ -59,10 +91,37 @@ int main() {
         }
         system("cls");
     }
-    return 0;
 }
 
-void decide_to_stop(){
+void for_user(List *L1) {
+    int choice = -1;
+    while(choice != 0) {
+        manuforUser();
+        cin >> choice;
+        system("cls");
+        if(choice == 1) {
+            displayStock(L1);
+            decide_to_stop();
+        } else if(choice == 2) {
+            searchStock(L1);
+            decide_to_stop();
+        } else if(choice == 3) {
+            generateReport(L1);
+            Sleep(1000);
+        } else if(choice == 0) {
+            Exit();
+        } else {
+            cout << "\n-------------------------------------------------------\n";
+            cout << "Invalid choice. Please try again.\n";
+            cout << "-------------------------------------------------------\n";
+            Sleep(500);
+        }
+        system("cls");
+    }
+}
+
+
+void decide_to_stop() {
     cout << "\nPress anykey to exit to main menu.....\n";
     _getch();
 }

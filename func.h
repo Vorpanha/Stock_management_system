@@ -2,23 +2,42 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <cscapi.h>
+#include <windows.h>
 #include "stream.h"
 #include "struct_func.h"
 
 using namespace std;
 
-void for_user_or_admin(){
-    cout<<"Which role are you:";
-    cout<<"[1]. Admin";
-    cout <<"[2]. ";
+void Exit() {
+    cout << "=======================================================\n";
+    cout << "                    EXIT PROGRAM\n";
+    cout << "=======================================================\n";
+    cout << "\nThank you for using the system.\n";
+    cout << "Program terminated successfully.\n";
+    cout << "=======================================================\n";
+    Sleep(1000);
+    exit(0);
+}
+
+void for_user_or_admin() {
+    cout << "\n=======================================================\n";
+    cout << "                    LOGIN PORTAL\n";
+    cout << "=======================================================\n\n";
+
+    cout << "[1] Administrator\n";
+    cout << "[2] User\n";
+    cout << "[0] Exit Program\n\n";
+
+    cout << "-------------------------------------------------------\n";
+    cout << "Select your role : ";
 }
 
 //----------------------------------Manu-----------------------------------
-void manu() {
+void manuforAdmin() {
     cout << "=======================================================\n";
     cout << "         STOCK INFORMATION MANAGEMENT SYSTEM\n";
     cout << "=======================================================\n\n";
-    cout << "";
 
     cout << "[1]. Add Stock Item\n";
     cout << "[2]. Display All Stocks\n";
@@ -26,7 +45,24 @@ void manu() {
     cout << "[4]. Update Stock\n";
     cout << "[5]. Delete Stock\n";
     cout << "[6]. Generate Report\n";
-    cout << "[7]. Exit program\n\n";
+    cout << "[7]. Back to the role\n";
+    cout << "[0]. Exit program\n\n";
+
+    cout << "-------------------------------------------------------\n";
+    cout << "Enter your choice : ";
+}
+//----------------------------------Manu-----------------------------------
+
+//----------------------------------Manu-----------------------------------
+void manuforUser() {
+    cout << "=======================================================\n";
+    cout << "         STOCK INFORMATION MANAGEMENT SYSTEM\n";
+    cout << "=======================================================\n\n";
+
+    cout << "[1]. Display All Stocks\n";
+    cout << "[2]. Search Stock\n";
+    cout << "[3]. Generate Report\n";
+    cout << "[0]. Exit program\n\n";
 
     cout << "-------------------------------------------------------\n";
     cout << "Enter your choice : ";
@@ -75,37 +111,87 @@ void addStock(List *ls) {
 //--------------------------------AddStock---------------------------------
 
 //------------------------------DisplayStock-------------------------------
-void displayStock(List *ls) {
+// void displayStock(List *ls) {
 
-    if(ls->head == nullptr) {
-        cout << "No stock available." << endl;
+//     if(ls->head == nullptr) {
+//         cout << "No stock available." << endl;
+//         return;
+//     }
+
+//     cout << "=======================================================\n";
+//     cout << "                   DISPLAY ALL STOCKS\n";
+//     cout << "=======================================================\n\n";
+
+//     cout << "ID\t|Name\t|Quantity\t|Price\n";
+//     cout << "-------------------------------------------------------\n";
+
+//     Product *temp = ls->head;
+//     int count = 0;
+ 
+//     while(temp != NULL) {
+//         cout << temp->Product_ID << "\t|"
+//              << temp->Product_Name << "|\t"
+//              << temp->Quantity << "|\t$"
+//              << temp->Unit_Price << endl;
+//         temp = temp->next;
+//         count++;
+//     }
+
+//     cout << "-------------------------------------------------------\n\n";
+//     cout << "Total Products : " << count << endl;
+
+//     cout << "\n=======================================================\n";
+
+//     cout << "Jg short ot (y/n):";
+//     // sortDisplay
+
+// }
+
+#include <iomanip>
+
+void displayStock(List *ls)
+{
+    if(ls->head == NULL) {
+        cout << "\nNo stock available.\n";
         return;
     }
 
-    cout << "=======================================================\n";
-    cout << "                   DISPLAY ALL STOCKS\n";
+    Product *current = ls->head;
+    int totalQuantity = 0;
+
+    cout << "\n=======================================================\n";
+    cout << "                   STOCK INVENTORY\n";
     cout << "=======================================================\n\n";
 
-    cout << "ID\tName\t\tQuantity\tPrice($)\n";
+    cout << left
+         << setw(15) << "Product ID" << "| "
+         << setw(18) << "Product Name" << "| "
+         << setw(13) << "Quantity" << "| "
+         << "Unit Price" << endl;
+
     cout << "-------------------------------------------------------\n";
 
-    Product *temp = ls->head;
-    int count = 0;
- 
-    while(temp != NULL) {
-        cout << temp->Product_ID << "\t"
-             << temp->Product_Name << "\t\t"
-             << temp->Quantity << "\t\t"
-             << temp->Unit_Price << endl;
-        temp = temp->next;
-        count++;
+    while(current != NULL)
+    {
+        cout << left
+             << setw(15) << current->Product_ID << "| "
+             << setw(18) << current->Product_Name << "| "
+             << setw(13) << current->Quantity << "| $"
+             << current->Unit_Price << endl;
+
+        totalQuantity += current->Quantity;
+        current = current->next;
     }
 
     cout << "-------------------------------------------------------\n\n";
-    cout << "Total Products : " << count << endl;
+
+    cout << "Inventory Summary\n";
+    cout << "-------------------------------------------------------\n";
+    cout << "Records Found : " << ls->n << endl;
+    cout << "Total Quantity: " << totalQuantity << endl;
+    cout << "-------------------------------------------------------\n";
 
     cout << "\n=======================================================\n";
-
 }
 //------------------------------DisplayStock-------------------------------
 
@@ -129,8 +215,16 @@ void searchStock(List *ls) {
     bool found = false;
 
     while(temp != nullptr) {
-        if(temp->Product_Name == searchName) {
+        string lettre_1 = temp->Product_Name.substr(0,searchName.length());
+        string lettre_2 = searchName.substr(0,searchName.length());
 
+        //covert to lower case
+        for(char &character: lettre_1)
+            character = static_cast<char>(tolower(static_cast<unsigned char>(character)));
+        for(char &character: lettre_2)
+            character = static_cast<char>(tolower(static_cast<unsigned char>(character)));
+        
+        if(lettre_1 == lettre_2 ) {
             cout << "\n-------------------------------------------------------\n";
             cout << "Product Information\n";
             cout << "-------------------------------------------------------\n";
@@ -142,7 +236,6 @@ void searchStock(List *ls) {
 
             cout << "-------------------------------------------------------\n";
             found = true;
-            return;
         }
         temp = temp->next;
     }
@@ -339,3 +432,11 @@ void generateReport(List *ls) {
         cout << "Exiting to main menu......" <<endl;
 }
 //-----------------------------GenerateReport------------------------------
+
+void SortDisplay() {
+    cout << "[1]. Sort by Product ID\n";
+    cout << "[2]. Sort by Product Name\n";
+    cout << "[3]. Sort by Quantity\n";
+    cout << "[4]. Sort by Unit Price\n";
+    cout << "Enter your choice: ";
+}
