@@ -10,44 +10,7 @@
 
 using namespace std;
 
-<<<<<<< HEAD
-string reEnterID(string new_id, string statement){
-    cout << statement;
-    cin >> new_id;  
-
-    List *ls = createEmptyList();
-    loadFromCSV(ls);
-    Product *ptmp = ls->head;
-
-    while (ptmp != nullptr) {
-        if (new_id == ptmp->Product_ID) {
-            cout << "ID already exists, try again.\n";
-            return reEnterID(new_id, statement); 
-        }
-        ptmp = ptmp->next;
-    }
-
-    return new_id;
-}
-
-bool is_duplicated(string ID){
-    List *ls = createEmptyList();
-    loadFromCSV(ls);
-    Product *ptmp = ls->head;
-    while(ptmp != nullptr){
-        if(ptmp->Product_ID == ID){
-            return true;
-            break;
-        }
-        ptmp = ptmp->next;
-    }
-    delete ptmp, ls;   
-    return false;
-}
-
-=======
-//-------------------------------------Exit--------------------------------------
->>>>>>> 24e5504 (After Fix UI 612026)
+//-------------------------------------Exit-------------------------------------
 void Exit() {
     cout << "\n=====================================================================\n";
     cout << "                            EXIT PROGRAM\n";
@@ -125,7 +88,6 @@ string reEnterID(string new_id, string statement){
     cout << "Product ID (Ex: E001) : ";
     cin >> new_id;
 
-<<<<<<< HEAD
     cout << "=======================================================\n";
     cout << "                    ADD STOCK ITEM\n";
     cout << "=======================================================\n\n";
@@ -141,7 +103,6 @@ string reEnterID(string new_id, string statement){
     if(is_duplicated(tmpID))
     tmpID = reEnterID(tmpID,statement_id);
     
-=======
     List *ls = createEmptyList();
     loadFromCSV(ls);
     Product *ptmp = ls->head;
@@ -190,7 +151,6 @@ void addStock(List *ls) {
         tmpID = reEnterID(tmpID, statement_id);
     }
 
->>>>>>> 24e5504 (After Fix UI 612026)
     cin.ignore();
     cout << "Product Name         : ";
     getline(cin, tmpName);
@@ -198,14 +158,10 @@ void addStock(List *ls) {
     cin >> tmpQuantity;
     cout << "Unit Price           : ";
     cin >> tmpPrice;
-<<<<<<< HEAD
     
     Product* New_product = new Product{tmpID,tmpName,tmpQuantity,tmpPrice,nullptr};
-    
-=======
-
     Product *New_product = new Product {tmpID, tmpName, tmpQuantity, tmpPrice, nullptr};
->>>>>>> 24e5504 (After Fix UI 612026)
+    
     saveToCSV(New_product);
 
     if(ls->n == 0) {
@@ -216,23 +172,18 @@ void addStock(List *ls) {
         ls->tail = New_product;
     }
     ls->n++;
-<<<<<<< HEAD
+
     cout << "\n-------------------------------------------------------\n";
     cout << "[SUCCESS] Product added successfully.\n";
     cout << "-------------------------------------------------------\n\n";
 
-    
     cout << "Data saved to stock.csv" << endl;
-
-
-=======
 
     cout << "\n---------------------------------------------------------------------\n";
     cout << "                 PRODUCT ADDED SUCCESSFULLY\n";
     cout << "---------------------------------------------------------------------\n";
     cout << "Data saved to Stock_info.csv\n";
     cout << "---------------------------------------------------------------------\n";
->>>>>>> 24e5504 (After Fix UI 612026)
 }
 //--------------------------------AddStock---------------------------------
 
@@ -356,25 +307,6 @@ void updateStock(List* ls) {
 
     
     Product *temp = ls->head;
-<<<<<<< HEAD
-    while (temp != nullptr) {
-        if (temp->Product_ID == searchID) {
-            cout << "\n-------------------------------------------------------\n";
-            cout << "Current Product Information\n";
-            cout << "-------------------------------------------------------\n";
-            
-            cout << "ID          : " << temp->Product_ID << endl;
-            cout << "Name        : " << temp->Product_Name << endl;
-            cout << "Quantity    : " << temp->Quantity << endl;
-            cout << "Price ($)   : " << temp->Unit_Price << endl;
-            
-            cout << "-------------------------------------------------------\n\n";
-            
-            cin.ignore();
-            cout << "New Product_Name: ";
-            getline(cin, temp->Product_Name);            
-            cout << "New Quantity: ";
-=======
 
     while(temp != nullptr) {
         if(temp->Product_ID == searchID) {
@@ -393,7 +325,6 @@ void updateStock(List* ls) {
             cout << "New Product Name : ";
             getline(cin, temp->Product_Name);
             cout << "New Quantity     : ";
->>>>>>> 24e5504 (After Fix UI 612026)
             cin >> temp->Quantity;
             cout << "New Unit Price   : ";
             cin >> temp->Unit_Price;

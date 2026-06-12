@@ -165,7 +165,3 @@ void generateReport(List *ls, int totalProducts, int totalQuantity, float totalV
 
     outfile.close();
 }
-<<<<<<< HEAD
-=======
-//--------------------------------GenerateReportTXT-------------------------------
->>>>>>> 24e5504 (After Fix UI 612026)
