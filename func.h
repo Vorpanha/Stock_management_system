@@ -92,9 +92,6 @@ string reEnterID(string new_id){
     cout << "Product ID (Ex: E001) : ";
     cin >> new_id;
 
-    cout << "=======================================================\n";
-    cout << "                    ADD STOCK ITEM\n";
-    cout << "=======================================================\n\n";
     
     string tmpName,tmpID;
     int tmpQuantity;
@@ -103,13 +100,20 @@ string reEnterID(string new_id){
     List *ls = createEmptyList();
     loadFromCSV(ls);
     Product *ptmp = ls->head;
-
+    
     while(ptmp != nullptr) {
         if(new_id == ptmp->Product_ID) {
+            cout<<"Comparing.....";
+            Sleep(150);
             return reEnterID(new_id);
         }
         ptmp = ptmp->next;
     }
+
+    cout << "=======================================================\n";
+    cout << "                    ADD STOCK ITEM\n";
+    cout << "=======================================================\n\n";
+    
     return new_id;
 }
 

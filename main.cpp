@@ -42,7 +42,6 @@ void handle_miss_input(List *L1) {
             Exit();
         break;
         default:
-            system("cls");
             cout<<"Invalid choice!";
             Sleep(1000);
             system("cls");

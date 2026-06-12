@@ -12,7 +12,7 @@ This is a study project created by our team members:
 
 The **Stock Management System** is a software project designed to monitor and manage products within a stock inventory.  
 
-It provides functionality to **generate reports, manage data files, update records, remove items, search entries, and add new data**.
+It provides functionality to **generate reports, manage data files, update records, remove items, search entries, and add new data**.n
 
 ---
 
