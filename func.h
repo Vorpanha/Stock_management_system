@@ -6,9 +6,11 @@
 #include <windows.h>
 #include "stream.h"
 #include "struct_func.h"
+#include <iomanip>
 
 using namespace std;
 
+<<<<<<< HEAD
 string reEnterID(string new_id, string statement){
     cout << statement;
     cin >> new_id;  
@@ -43,69 +45,87 @@ bool is_duplicated(string ID){
     return false;
 }
 
+=======
+//-------------------------------------Exit--------------------------------------
+>>>>>>> 24e5504 (After Fix UI 612026)
 void Exit() {
-    cout << "=======================================================\n";
-    cout << "                    EXIT PROGRAM\n";
-    cout << "=======================================================\n";
-    cout << "\nThank you for using the system.\n";
-    cout << "Program terminated successfully.\n";
-    cout << "=======================================================\n";
+    cout << "\n=====================================================================\n";
+    cout << "                            EXIT PROGRAM\n";
+    cout << "=====================================================================\n\n";
+
+    cout << "Thank you for using the Stock Inventory System.\n";
+    cout << "Program terminated successfully.\n\n";
+
+    cout << "---------------------------------------------------------------------\n";
+    cout << "Status : Closed\n";
+    cout << "---------------------------------------------------------------------\n";
+
     Sleep(1000);
     exit(0);
 }
+//-------------------------------------Exit--------------------------------------
 
+//-------------------------------------LoginPortal--------------------------------------
 void for_user_or_admin() {
-    cout << "\n=======================================================\n";
-    cout << "                    LOGIN PORTAL\n";
-    cout << "=======================================================\n\n";
+    cout << "\n=====================================================================\n";
+    cout << "                             LOGIN PORTAL\n";
+    cout << "=====================================================================\n\n";
 
-    cout << "[1] Administrator\n";
-    cout << "[2] User\n";
-    cout << "[0] Exit Program\n\n";
+    cout << "  [1] Administrator\n";
+    cout << "  [2] User\n";
+    cout << "  [0] Exit Program\n\n";
 
-    cout << "-------------------------------------------------------\n";
+    cout << "---------------------------------------------------------------------\n";
     cout << "Select your role : ";
 }
+//-------------------------------------LoginPortal--------------------------------------
 
-//----------------------------------Manu-----------------------------------
+//----------------------------------Admin Menu-----------------------------------
 void manuforAdmin() {
-    cout << "=======================================================\n";
-    cout << "         STOCK INFORMATION MANAGEMENT SYSTEM\n";
-    cout << "=======================================================\n\n";
+    cout << "\n=====================================================================\n";
+    cout << "                 STOCK INFORMATION MANAGEMENT SYSTEM\n";
+    cout << "=====================================================================\n\n";
 
-    cout << "[1]. Add Stock Item\n";
-    cout << "[2]. Display All Stocks\n";
-    cout << "[3]. Search Stock\n";
-    cout << "[4]. Update Stock\n";
-    cout << "[5]. Delete Stock\n";
-    cout << "[6]. Generate Report\n";
-    cout << "[7]. Back to the role\n";
-    cout << "[0]. Exit program\n\n";
+    cout << "  [1] Add Stock Item\n";
+    cout << "  [2] Display All Stocks\n";
+    cout << "  [3] Search Stock\n";
+    cout << "  [4] Update Stock\n";
+    cout << "  [5] Delete Stock\n";
+    cout << "  [6] Generate Report\n";
+    cout << "  [7] Back to Role Selection\n";
+    cout << "  [0] Exit Program\n\n";
 
-    cout << "-------------------------------------------------------\n";
+    cout << "---------------------------------------------------------------------\n";
     cout << "Enter your choice : ";
 }
-//----------------------------------Manu-----------------------------------
+//----------------------------------Admin Menu-----------------------------------
 
-//----------------------------------Manu-----------------------------------
+//----------------------------------User Menu-----------------------------------
 void manuforUser() {
-    cout << "=======================================================\n";
-    cout << "         STOCK INFORMATION MANAGEMENT SYSTEM\n";
-    cout << "=======================================================\n\n";
+    cout << "\n=====================================================================\n";
+    cout << "                 STOCK INFORMATION MANAGEMENT SYSTEM\n";
+    cout << "=====================================================================\n\n";
 
-    cout << "[1]. Display All Stocks\n";
-    cout << "[2]. Search Stock\n";
-    cout << "[3]. Generate Report\n";
-    cout << "[0]. Exit program\n\n";
+    cout << "  [1] Display All Stocks\n";
+    cout << "  [2] Search Stock\n";
+    cout << "  [3] Generate Report\n";
+    cout << "  [0] Exit Program\n\n";
 
-    cout << "-------------------------------------------------------\n";
+    cout << "---------------------------------------------------------------------\n";
     cout << "Enter your choice : ";
 }
-//----------------------------------Manu-----------------------------------
+//----------------------------------User Menu-----------------------------------
 
 //--------------------------------AddStock---------------------------------
-void addStock(List *ls) { 
+string reEnterID(string new_id, string statement){
+    cout << "\n---------------------------------------------------------------------\n";
+    cout << "                     ID ALREADY EXISTS\n";
+    cout << "                     PLEASE TRY AGAIN\n";
+    cout << "---------------------------------------------------------------------\n";
+    cout << "Product ID (Ex: E001) : ";
+    cin >> new_id;
 
+<<<<<<< HEAD
     cout << "=======================================================\n";
     cout << "                    ADD STOCK ITEM\n";
     cout << "=======================================================\n\n";
@@ -121,6 +141,56 @@ void addStock(List *ls) {
     if(is_duplicated(tmpID))
     tmpID = reEnterID(tmpID,statement_id);
     
+=======
+    List *ls = createEmptyList();
+    loadFromCSV(ls);
+    Product *ptmp = ls->head;
+
+    while(ptmp != nullptr) {
+        if(new_id == ptmp->Product_ID) {
+            return reEnterID(new_id, statement);
+        }
+        ptmp = ptmp->next;
+    }
+    return new_id;
+}
+
+bool is_duplicated(string ID){
+    List *ls = createEmptyList();
+    loadFromCSV(ls);
+    Product *ptmp = ls->head;
+
+    while(ptmp != nullptr){
+        if(ptmp->Product_ID == ID){
+            return true;
+            break;
+        }
+        ptmp = ptmp->next;
+    }
+
+    delete ptmp, ls;
+    return false;
+}
+
+void addStock(List *ls) {
+
+    cout << "\n=====================================================================\n";
+    cout << "                          ADD STOCK ITEM\n";
+    cout << "=====================================================================\n\n";
+
+    string statement_id;
+    string tmpName, tmpID;
+    int tmpQuantity;
+    float tmpPrice;
+
+    cout << "Product ID (Ex: E001) : ";
+    cin >> tmpID;
+
+    if(is_duplicated(tmpID)) {
+        tmpID = reEnterID(tmpID, statement_id);
+    }
+
+>>>>>>> 24e5504 (After Fix UI 612026)
     cin.ignore();
     cout << "Product Name         : ";
     getline(cin, tmpName);
@@ -128,9 +198,14 @@ void addStock(List *ls) {
     cin >> tmpQuantity;
     cout << "Unit Price           : ";
     cin >> tmpPrice;
+<<<<<<< HEAD
     
     Product* New_product = new Product{tmpID,tmpName,tmpQuantity,tmpPrice,nullptr};
     
+=======
+
+    Product *New_product = new Product {tmpID, tmpName, tmpQuantity, tmpPrice, nullptr};
+>>>>>>> 24e5504 (After Fix UI 612026)
     saveToCSV(New_product);
 
     if(ls->n == 0) {
@@ -140,8 +215,8 @@ void addStock(List *ls) {
         ls->tail->next = New_product;
         ls->tail = New_product;
     }
-
     ls->n++;
+<<<<<<< HEAD
     cout << "\n-------------------------------------------------------\n";
     cout << "[SUCCESS] Product added successfully.\n";
     cout << "-------------------------------------------------------\n\n";
@@ -150,75 +225,45 @@ void addStock(List *ls) {
     cout << "Data saved to stock.csv" << endl;
 
 
+=======
+
+    cout << "\n---------------------------------------------------------------------\n";
+    cout << "                 PRODUCT ADDED SUCCESSFULLY\n";
+    cout << "---------------------------------------------------------------------\n";
+    cout << "Data saved to Stock_info.csv\n";
+    cout << "---------------------------------------------------------------------\n";
+>>>>>>> 24e5504 (After Fix UI 612026)
 }
 //--------------------------------AddStock---------------------------------
 
-//------------------------------DisplayStock-------------------------------
-// void displayStock(List *ls) {
-
-//     if(ls->head == nullptr) {
-//         cout << "No stock available." << endl;
-//         return;
-//     }
-
-//     cout << "=======================================================\n";
-//     cout << "                   DISPLAY ALL STOCKS\n";
-//     cout << "=======================================================\n\n";
-
-//     cout << "ID\t|Name\t|Quantity\t|Price\n";
-//     cout << "-------------------------------------------------------\n";
-
-//     Product *temp = ls->head;
-//     int count = 0;
- 
-//     while(temp != NULL) {
-//         cout << temp->Product_ID << "\t|"
-//              << temp->Product_Name << "|\t"
-//              << temp->Quantity << "|\t$"
-//              << temp->Unit_Price << endl;
-//         temp = temp->next;
-//         count++;
-//     }
-
-//     cout << "-------------------------------------------------------\n\n";
-//     cout << "Total Products : " << count << endl;
-
-//     cout << "\n=======================================================\n";
-
-//     cout << "Jg short ot (y/n):";
-//     // sortDisplay
-
-// }
-
-#include <iomanip>
-
-void displayStock(List *ls)
-{
-    if(ls->head == NULL) {
-        cout << "\nNo stock available.\n";
+//-------------------------------------DisplayStock--------------------------------------
+void displayStock(List *ls) {
+    if(ls->head == nullptr) {
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "                     NO STOCK AVAILABLE\n";
+        cout << "---------------------------------------------------------------------\n";
         return;
     }
 
     Product *current = ls->head;
     int totalQuantity = 0;
 
-    cout << "\n=======================================================\n";
-    cout << "                   STOCK INVENTORY\n";
-    cout << "=======================================================\n\n";
+    cout << "\n=====================================================================\n";
+    cout << "                          STOCK INVENTORY\n";
+    cout << "=====================================================================\n\n";
 
     cout << left
-         << setw(15) << "Product ID" << "| "
-         << setw(18) << "Product Name" << "| "
+         << setw(13) << "Product ID" << "| "
+         << setw(23) << "Product Name" << "| "
          << setw(13) << "Quantity" << "| "
          << "Unit Price" << endl;
 
-    cout << "-------------------------------------------------------\n";
+    cout << "---------------------------------------------------------------------\n";
 
-    while(current != NULL)
-    {
+    while(current != NULL) {
         cout << left
-             << setw(15) << current->Product_ID << "| "
-             << setw(18) << current->Product_Name << "| "
+             << setw(13) << current->Product_ID << "| "
+             << setw(23) << current->Product_Name << "| "
              << setw(13) << current->Quantity << "| $"
              << current->Unit_Price << endl;
 
@@ -226,31 +271,31 @@ void displayStock(List *ls)
         current = current->next;
     }
 
-    cout << "-------------------------------------------------------\n\n";
+    cout << "---------------------------------------------------------------------\n\n";
 
     cout << "Inventory Summary\n";
-    cout << "-------------------------------------------------------\n";
+    cout << "---------------------------------------------------------------------\n";
     cout << "Records Found : " << ls->n << endl;
     cout << "Total Quantity: " << totalQuantity << endl;
-    cout << "-------------------------------------------------------\n";
-
-    cout << "\n=======================================================\n";
+    cout << "---------------------------------------------------------------------\n";
 }
-//------------------------------DisplayStock-------------------------------
+//-------------------------------------DisplayStock--------------------------------------
 
-//------------------------------SearchStock--------------------------------
+//-------------------------------------SearchStock--------------------------------------
 void searchStock(List *ls) {
-    cout << "=======================================================\n";
-    cout << "                     SEARCH STOCK\n";
-    cout << "=======================================================\n\n";
-
     if(ls->head == nullptr) {
-        cout << "No stock available." << endl;
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "                     NO STOCK AVAILABLE\n";
+        cout << "---------------------------------------------------------------------\n";
         return;
     }
 
+    cout << "\n=====================================================================\n";
+    cout << "                           SEARCH STOCK\n";
+    cout << "=====================================================================\n\n";
+
     string searchName;
-    cout << "Enter Product Name to search: ";
+    cout << "Enter Product Name to Search : ";
     cin.ignore();
     getline(cin, searchName);
 
@@ -266,44 +311,52 @@ void searchStock(List *ls) {
             character = static_cast<char>(tolower(static_cast<unsigned char>(character)));
         for(char &character: lettre_2)
             character = static_cast<char>(tolower(static_cast<unsigned char>(character)));
-        
-        if(lettre_1 == lettre_2 ) {
-            cout << "\n-------------------------------------------------------\n";
-            cout << "Product Information\n";
-            cout << "-------------------------------------------------------\n";
 
-            cout << "ID       : " << temp->Product_ID << endl;
-            cout << "Name     : " << temp->Product_Name << endl;
-            cout << "Quantity : " << temp->Quantity << endl;
-            cout << "Price    : $" << temp->Unit_Price << endl;
+        if(lettre_1 == lettre_2) {
+            cout << "\n---------------------------------------------------------------------\n";
+            cout << "                        PRODUCT INFORMATION\n";
+            cout << "---------------------------------------------------------------------\n";
 
-            cout << "-------------------------------------------------------\n";
+            cout << "Product ID   : " << temp->Product_ID << endl;
+            cout << "Product Name : " << temp->Product_Name << endl;
+            cout << "Quantity     : " << temp->Quantity << endl;
+            cout << "Unit Price   : $" << temp->Unit_Price << endl;
+
+            cout << "---------------------------------------------------------------------\n";
             found = true;
         }
         temp = temp->next;
     }
+
     if(!found) {
-        cout << "\n-------------------------------------------------------\n";
-        cout << "[ERROR] Product not found.\n";
-        cout << "-------------------------------------------------------\n";
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "                    PRODUCT NOT FOUND\n";
+        cout << "---------------------------------------------------------------------\n";
     }
 }
-//------------------------------SearchStock--------------------------------
+//-------------------------------------SearchStock--------------------------------------
 
 //-------------------------------UpdateStock-------------------------------
 void updateStock(List* ls) {
+    if(ls->head == nullptr) {
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "                     NO STOCK AVAILABLE\n";
+        cout << "---------------------------------------------------------------------\n";
+        return;
+    }
 
-    cout << "=======================================================\n";
-    cout << "                     UPDATE STOCK\n";
-    cout << "=======================================================\n\n";
+    cout << "\n=====================================================================\n";
+    cout << "                           UPDATE STOCK\n";
+    cout << "=====================================================================\n\n";
 
     string searchID;
     bool found = false;
-    cout << "Enter ID to update: ";
+    cout << "Enter Product ID to Update : ";
     cin >> searchID;
 
     
     Product *temp = ls->head;
+<<<<<<< HEAD
     while (temp != nullptr) {
         if (temp->Product_ID == searchID) {
             cout << "\n-------------------------------------------------------\n";
@@ -321,16 +374,36 @@ void updateStock(List* ls) {
             cout << "New Product_Name: ";
             getline(cin, temp->Product_Name);            
             cout << "New Quantity: ";
+=======
+
+    while(temp != nullptr) {
+        if(temp->Product_ID == searchID) {
+            cout << "\n---------------------------------------------------------------------\n";
+            cout << "                     CURRENT PRODUCT INFORMATION\n";
+            cout << "---------------------------------------------------------------------\n";
+
+            cout << "Product ID   : " << temp->Product_ID << endl;
+            cout << "Product Name : " << temp->Product_Name << endl;
+            cout << "Quantity     : " << temp->Quantity << endl;
+            cout << "Unit Price   : $" << temp->Unit_Price << endl;
+
+            cout << "---------------------------------------------------------------------\n\n";
+
+            cin.ignore();
+            cout << "New Product Name : ";
+            getline(cin, temp->Product_Name);
+            cout << "New Quantity     : ";
+>>>>>>> 24e5504 (After Fix UI 612026)
             cin >> temp->Quantity;
-            cout << "New Unit_Price: ";
+            cout << "New Unit Price   : ";
             cin >> temp->Unit_Price;
             
             updateCSV(searchID,temp);
 
-            cout << "\n-------------------------------------------------------\n";
-            cout << "[SUCCESS] Product updated successfully.\n";
-            cout << "Data saved to stock.csv\n";
-            cout << "-------------------------------------------------------\n";
+            cout << "\n---------------------------------------------------------------------\n";
+            cout << "                 PRODUCT UPDATED SUCCESSFULLY\n";
+            cout << "                 Data saved to Stock_info.csv\n";
+            cout << "---------------------------------------------------------------------\n";
 
             found = true;
             return;
@@ -338,29 +411,32 @@ void updateStock(List* ls) {
         temp = temp->next;
     }
     if(!found) {
-        cout << "\n-------------------------------------------------------\n";
-        cout << "[ERROR] Product not found.\n";
-        cout << "-------------------------------------------------------\n";
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "                     PRODUCT NOT FOUND\n";
+        cout << "---------------------------------------------------------------------\n";
     }
 }
 //-------------------------------UpdateStock-------------------------------
 
 //-------------------------------DeleteStock-------------------------------
 void deleteStock(List *ls) {
-
     if(ls->head == nullptr) {
-        cout << "\nNo stock available." << endl;
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "                     NO STOCK AVAILABLE\n";
+        cout << "---------------------------------------------------------------------\n";
         return;
     }
+
+    displayStock(ls);
 
     string idSearch;
     char choice;
 
-    cout << "=======================================================\n";
-    cout << "                     DELETE STOCK\n";
-    cout << "=======================================================\n\n";
+    cout << "\n=====================================================================\n";
+    cout << "                           DELETE STOCK\n";
+    cout << "=====================================================================\n\n";
 
-    cout << "Enter Product ID: ";
+    cout << "Enter Product ID : ";
     cin >> idSearch;
 
     Product *current = ls->head;
@@ -370,57 +446,63 @@ void deleteStock(List *ls) {
     while(current != nullptr) {
         if(current->Product_ID == idSearch) {
             found = true;
-            cout << "\n-------------------------------------------------------\n";
-            cout << "Product Information\n";
-            cout << "-------------------------------------------------------\n";
 
-            cout << "ID          : " << current->Product_ID << endl;
-            cout << "Name        : " << current->Product_Name << endl;
-            cout << "Quantity    : " << current->Quantity << endl;
-            cout << "Price ($)   : " << current->Unit_Price << endl;
+            cout << "\n---------------------------------------------------------------------\n";
+            cout << "                     PRODUCT INFORMATION\n";
+            cout << "---------------------------------------------------------------------\n";
 
-            cout << "-------------------------------------------------------\n";
+            cout << "Product ID   : " << current->Product_ID << endl;
+            cout << "Product Name : " << current->Product_Name << endl;
+            cout << "Quantity     : " << current->Quantity << endl;
+            cout << "Unit Price   : $" << current->Unit_Price << endl;
 
-            cout << "\nConfirm Delete (Y/N): ";
+            cout << "---------------------------------------------------------------------\n";
+
+            cout << "\nConfirm Delete (Y/N) : ";
             cin >> choice;
-            
+
             if(choice == 'Y' || choice == 'y') {
                 if(tmp == nullptr) {
                     ls->head = ls->head->next;
                 } else {
                     tmp->next = current->next;
                 }
+
                 delete current;
                 ls->n--;
 
                 updateCSVWhenDelete(idSearch);
 
-                cout << "\n-------------------------------------------------------\n";
-                cout << "[SUCCESS] Product deleted successfully.\n";
-                cout << "-------------------------------------------------------\n";
+                cout << "\n---------------------------------------------------------------------\n";
+                cout << "                 PRODUCT DELETED SUCCESSFULLY\n";
+                cout << "---------------------------------------------------------------------\n";
+
                 return;
             } else {
-                cout << "\n-------------------------------------------------------\n";
-                cout << "Delete operation cancelled.\n";
-                cout << "-------------------------------------------------------\n";
+                cout << "\n---------------------------------------------------------------------\n";
+                cout << "                  DELETE OPERATION CANCELLED\n";
+                cout << "---------------------------------------------------------------------\n";
             }
         }
+
         tmp = current;
         current = current->next;
     }
+
     if(!found) {
-        cout << "\n-------------------------------------------------------\n";
-        cout << "[ERROR] Product not found.\n";
-        cout << "-------------------------------------------------------\n";
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "                     PRODUCT NOT FOUND\n";
+        cout << "---------------------------------------------------------------------\n";
     }
 }
 //-------------------------------DeleteStock-------------------------------
 
-//-----------------------------GenerateReport------------------------------
+//--------------------------------GenerateReport-------------------------------
 void generateReport(List *ls) {
-
     if(ls->head == nullptr) {
-        cout << "No stock available." << endl;
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "                     NO STOCK AVAILABLE\n";
+        cout << "---------------------------------------------------------------------\n";
         return;
     }
 
@@ -430,24 +512,26 @@ void generateReport(List *ls) {
     int totalQuantity = 0;
     float totalValue = 0;
 
-    cout << "======================================================\n";
-    cout << "                  INVENTORY REPORT\n";
-    cout << "=======================================================\n\n";
+    cout << "\n=====================================================================\n";
+    cout << "                         INVENTORY REPORT\n";
+    cout << "=====================================================================\n\n";
 
-    cout << "Product Summary\n";
-    cout << "-------------------------------------------------------\n\n";
+    cout << left
+         << setw(13) << "Product ID" << "| "
+         << setw(23) << "Product Name" << "| "
+         << setw(13) << "Quantity" << "| "
+         << "Unit Price" << endl;
+
+    cout << "---------------------------------------------------------------------\n";
 
     while(tmp != nullptr) {
         float value = tmp->Unit_Price * tmp->Quantity;
 
-        cout << tmp->Product_ID
-             << "  "
-             << tmp->Product_Name
-             << "   Quantity: "
-             << tmp->Quantity
-             << "   Value: $"
-             << value
-             << endl;
+        cout << left
+             << setw(13) << tmp->Product_ID << "| "
+             << setw(23) << tmp->Product_Name << "| "
+             << setw(13) << tmp->Quantity << "| $"
+             << value << endl;
 
         totalProducts++;
         totalQuantity += tmp->Quantity;
@@ -455,31 +539,36 @@ void generateReport(List *ls) {
         tmp = tmp->next;
     }
 
-    cout << "\n-------------------------------------------------------\n";
-    cout << "Total Products      : " << totalProducts << endl;
-    cout << "Total Quantity      : " << totalQuantity << endl;
-    cout << "Total Stock Value   : $" << totalValue << endl;
+    cout << "---------------------------------------------------------------------\n\n";
 
-    cout << "\n=======================================================\n";
+    cout << "Inventory Summary\n";
+    cout << "---------------------------------------------------------------------\n";
+    cout << "Records Found : " << totalProducts << endl;
+    cout << "Total Quantity: " << totalQuantity << endl;
+    cout << "Total Value   : $" << totalValue << endl;
+    cout << "---------------------------------------------------------------------\n";
 
-    cout << "Wish to export as txt (Y/N): ";
+    cout << "\nExport Report\n";
+    cout << "---------------------------------------------------------------------\n";
+    cout << "Wish to export as TXT (Y/N) : ";
+
     string choose;
     cin >> choose;
 
-    if(choose == "Y"|| choose =="y") {
-        cout << "saved as generated_report.txt";
-        generateReport(ls, totalProducts, totalQuantity, totalValue);
-        cout << "\nDone!" << endl;
-    }
-    else
-        cout << "Exiting to main menu......" <<endl;
-}
-//-----------------------------GenerateReport------------------------------
+    if(choose == "Y" || choose == "y") {
 
-void SortDisplay() {
-    cout << "[1]. Sort by Product ID\n";
-    cout << "[2]. Sort by Product Name\n";
-    cout << "[3]. Sort by Quantity\n";
-    cout << "[4]. Sort by Unit Price\n";
-    cout << "Enter your choice: ";
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "Saving report to generated_report.txt...\n";
+
+        generateReport(ls, totalProducts, totalQuantity, totalValue);
+
+        cout << "Report exported successfully.\n";
+        cout << "---------------------------------------------------------------------\n";
+
+    } else {
+        cout << "\n---------------------------------------------------------------------\n";
+        cout << "Returning to main menu...\n";
+        cout << "---------------------------------------------------------------------\n";
+    }
 }
+//--------------------------------GenerateReport-------------------------------

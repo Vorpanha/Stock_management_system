@@ -1,7 +1,6 @@
 Product ID,Product name,Quantity,Unit prices
-E100,Banana,100,0.1
-E101,Apple,50,0.5
-E102,Grape,150,1
-E104,Yoyu,99,1000.000000
-E105,Iphone 11 Pro Max,100,5000.000000
-E107,Car Roro,5,9999.000000
+E001,Apple,100,1.000000
+E002,ApplePilok,66,99.000000
+E007,Banana,199,0.100000
+E005,Jackfruit,50,5.000000
+E004,Holy Water,77,67.000000
