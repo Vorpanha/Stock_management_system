@@ -26,7 +26,8 @@ We have two modes of access:
   - Update records  
   - Remove items  
   - Search entries  
-  - Add new data  
+  - Add new data
+  - Back to Operator
 
 - **User Mode**  
   - View products  
