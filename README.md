@@ -50,3 +50,4 @@ We have two modes of access:
 1. Compile the program:
    ```bash
     g++ main.cpp func.cpp stream.cpp struct_func.cpp -o main
+2. Then run main.exe
