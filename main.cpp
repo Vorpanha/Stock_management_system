@@ -2,9 +2,9 @@
 #include <cscapi.h>
 #include <conio.h> //used for press any key fun which it call _getch()
 #include <windows.h>
-#include "struct_func.h"
-#include "stream.h"
-#include "func.h"
+#include "header/struct_func.h"
+#include "header/stream.h"
+#include "header/func.h"
 
 using namespace std;
 
