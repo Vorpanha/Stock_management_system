@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include "struct_func.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -61,7 +62,7 @@ void loadFromCSV(List* ls){
             getline(s, quantity, ',');
             getline(s, price, ',');
 
-            Product* p = new Product{id, name,stoi(quantity), stof(price), nullptr};
+            Product* p = new Product{id, name, stoi(quantity), stof(price), nullptr};
 
             if (ls->n == 0) ls->head = p;
             else ls->tail->next = p;
@@ -121,30 +122,46 @@ void updateCSV(string ID,Product *p){
     delete tmp;
 }
 
-void generateReport(List *ls,int totalProducts,int totalQuantity,float totalValue){
-    string gen_path = "generated_report.txt";
-    string report = "Here is Producut Summary:\n\n";
+//--------------------------------GenerateReportTXT-------------------------------
+void generateReport(List *ls, int totalProducts, int totalQuantity, float totalValue) {
+
+    ofstream outfile;
+    outfile.open("generated_report.txt");
+
+    outfile << "=====================================================================\n";
+    outfile << "                         INVENTORY REPORT\n";
+    outfile << "=====================================================================\n\n";
+
+    outfile << left
+         << setw(13) << "Product ID" << "| "
+         << setw(23) << "Product Name" << "| "
+         << setw(13) << "Quantity" << "| "
+         << "Unit Price" << endl;
+
+    outfile << "---------------------------------------------------------------------\n";
 
     Product *tmp = ls->head;
+
     while(tmp != nullptr) {
         float value = tmp->Unit_Price * tmp->Quantity;
-        report +="ID: " + tmp->Product_ID+" \t ";
-        report += tmp->Product_Name+ "\t\tQuantity: ";
-        report += to_string(tmp->Quantity)+ "\t\tValue: $" ;
-        report += to_string(value)+"\n";
+
+        outfile << left
+             << setw(13) << tmp->Product_ID << "| "
+             << setw(23) << tmp->Product_Name << "| "
+             << setw(13) << tmp->Quantity << "| $"
+             << value << endl;
+
         tmp = tmp->next;
     }
 
-    delete tmp;
+    outfile << "---------------------------------------------------------------------\n\n";
 
-    report+= "\n-------------------------------------------------------\n";
-    report += "Total Products      : " + to_string(totalProducts);
-    report += "\nTotal Quantity      : " + to_string(totalQuantity) ;
-    report += "\nTotal Stock Value   : $" + to_string(totalValue);
-    report+=  "\n=======================================================\n";
+    outfile << "Inventory Summary\n";
+    outfile << "---------------------------------------------------------------------\n";
+    outfile << "Records Found : " << totalProducts << endl;
+    outfile << "Total Quantity: " << totalQuantity << endl;
+    outfile << "Total Value   : $" << totalValue << endl;
+    outfile << "---------------------------------------------------------------------\n";
 
-    file.open(gen_path,ios::out);
-    file<<report;
-    file.close();    
-
+    outfile.close();
 }
