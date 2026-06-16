@@ -1,4 +1,4 @@
-# 📘 About Us
+# About Us
 This is a study project created by our team members:
 
 1. **NUTH KIMHONG**  
@@ -8,7 +8,7 @@ This is a study project created by our team members:
 
 ---
 
-# 📦 Stock Management System
+# Stock Management System
 
 The **Stock Management System** is a software project designed to monitor and manage products within a stock inventory.  
 
@@ -16,7 +16,7 @@ It provides functionality to **generate reports, manage data files, update recor
 
 ---
 
-## 👥 Modes of Operation
+## Modes of Operation
 We have two modes of access:
 
 - **Admin Mode**  
@@ -36,7 +36,7 @@ We have two modes of access:
 
 ---
 
-## ✨ Features
+## Features
 - **Generate Report**: Summarize product information in stock.  
 - **Data File Management**: Save and load product data from CSV files.  
 - **Update Data**: Modify product details such as quantity or price.  
@@ -46,7 +46,7 @@ We have two modes of access:
 
 ---
 
-## 🚀 How to Run
+## How to Run
 1. Compile the program:
    ```bash
    g++ main.cpp -o main
