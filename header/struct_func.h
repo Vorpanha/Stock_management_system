@@ -18,7 +18,4 @@ struct List {
     Product *tail;
 };
 
-List* createEmptyList() {
-    List* ls = new List{0,nullptr,nullptr};
-    return ls;
-}
+List* createEmptyList();

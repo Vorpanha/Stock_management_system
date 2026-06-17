@@ -1,11 +1,12 @@
-///---here organize of the Read or write func
+//here organize of the Read or write func
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include "../header/struct_func.h"
-#include "../header/stream.h"
 #include <iomanip>
+
+using namespace std;
 
 fstream file;
 string path = "../data/Stock_info.csv", title = "Product ID,Product name,Quantity,Unit prices\n";
@@ -124,7 +125,7 @@ void updateCSV(string ID,Product *p){
 void generateReport(List *ls, int totalProducts, int totalQuantity, float totalValue) {
 
     ofstream outfile;
-    outfile.open("data/generated_report.txt");
+    outfile.open("../data/generated_report.txt");
 
     outfile << "=====================================================================\n";
     outfile << "                         INVENTORY REPORT\n";
@@ -142,23 +143,20 @@ void generateReport(List *ls, int totalProducts, int totalQuantity, float totalV
 
     while(tmp != nullptr) {
         float value = tmp->Unit_Price * tmp->Quantity;
-
         outfile << left
              << setw(13) << tmp->Product_ID << "| "
              << setw(23) << tmp->Product_Name << "| "
              << setw(13) << tmp->Quantity << "| $"
              << value << endl;
-
         tmp = tmp->next;
     }
 
     outfile << "---------------------------------------------------------------------\n\n";
-
     outfile << "Inventory Summary\n";
     outfile << "---------------------------------------------------------------------\n";
-    outfile << "Records Found : " << totalProducts << endl;
-    outfile << "Total Quantity: " << totalQuantity << endl;
-    outfile << "Total Value   : $" << totalValue << endl;
+    outfile << "Current Product : " << totalProducts << endl;
+    outfile << "Total Quantity  : " << totalQuantity << endl;
+    outfile << "Total Value     : $" << totalValue << endl;
     outfile << "---------------------------------------------------------------------\n";
 
     outfile.close();

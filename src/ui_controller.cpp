@@ -5,17 +5,11 @@
 #include "../header/struct_func.h"
 #include "../header/stream.h"
 #include "../header/func.h"
+#include "../header/ui_controller.h"
 
-using namespace std;
 
-//--aids ui funcs
-void decide_to_stop();
-void handle_miss_input(List *L1);
-void for_admin(List *L1);
-void for_user(List *L1);
-
-int main() {
-    
+void load_ui_elements() {
+      
     system("cls"); //to cls any cls in terminal
     
     List *L1 = createEmptyList();
@@ -25,97 +19,101 @@ int main() {
 }
 
 void handle_miss_input(List *L1) {
-    int choice;
+    string choice;
     for_user_or_admin();
     cin>>choice;
-    switch(choice){
-        case 1:
+    while(1) {
+        if(choice =="1") {
             system("cls");
             for_admin(L1);
-        break;
-        case 2:
+        }
+        else if(choice == "2") {
             system("cls");
             for_user(L1);
-            break;
-        case 0:
+        } else if(choice == "0") {
             system("cls");
             Exit();
-        break;
-        default:
-            cout<<"Invalid choice!";
+            break;
+        } else {
+            error_pop_up();
             Sleep(1000);
             system("cls");
             handle_miss_input(L1);
-        break;
+        }
     }
 }
 
 void for_admin(List *L1) {
-    int choice = -1;
-    while(choice != 0) {
+    string choice = "-1";
+    while(1) {
         manuforAdmin();
         cin >> choice;
         system("cls");
-        if(choice == 1) {
+        if(choice == "1") {
             addStock(L1);
-            Sleep(500);
-        } else if(choice == 2) {
+            decide_to_stop();
+        } else if(choice == "2") {
             displayStock(L1);
             decide_to_stop();
-        } else if(choice == 3) {
+        } else if(choice == "3") {
             searchStock(L1);
             decide_to_stop();
-        } else if(choice==4) {
+        } else if(choice == "4") {
             updateStock(L1);
-            Sleep(1500);
-        } else if(choice == 5) {
+            decide_to_stop();
+        } else if(choice == "5") {
             deleteStock(L1);
-            Sleep(1500);
-        } else if(choice == 6) {
+            decide_to_stop();
+        } else if(choice == "6") {
             generateReport(L1);
             Sleep(1000);
-        } else if(choice == 7) {
+        } else if(choice == "7") {
             handle_miss_input(L1);
-            Sleep(1000);
-        } else if(choice == 0) {
+            decide_to_stop();
+        } else if(choice == "0") {
             Exit();
+            break;
         } else {
-            cout << "\n-------------------------------------------------------\n";
-            cout << "Invalid choice. Please try again.\n";
-            cout << "-------------------------------------------------------\n";
+            error_pop_up();
             Sleep(500);
         }
         system("cls");
     }
+    Exit();
 }
 
 void for_user(List *L1) {
-    int choice = -1;
-    while(choice != 0) {
+    string choice = "-1";
+    while(1) {
         manuforUser();
         cin >> choice;
         system("cls");
-        if(choice == 1) {
+        if(choice == "1") {
             displayStock(L1);
             decide_to_stop();
-        } else if(choice == 2) {
+        } else if(choice == "2") {
             searchStock(L1);
             decide_to_stop();
-        } else if(choice == 3) {
+        } else if(choice == "3") {
             generateReport(L1);
             Sleep(1000);
-        } else if(choice == 0) {
+        } else if(choice == "0") {
             Exit();
+            break;
         } else {
-            cout << "\n-------------------------------------------------------\n";
-            cout << "Invalid choice. Please try again.\n";
-            cout << "-------------------------------------------------------\n";
+            error_pop_up();
             Sleep(500);
         }
         system("cls");
     }
+    Exit();
 }
 
+void error_pop_up(){
+    cout << "\n-------------------------------------------------------\n";
+    cout << "[ERROR] Please try again!\n";
+    cout << "-------------------------------------------------------\n";
+}
 
 void decide_to_stop() {
     cout << "\nPress anykey to exit to main menu.....\n";
