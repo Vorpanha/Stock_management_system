@@ -49,4 +49,5 @@ We have two modes of access:
 ## How to Run
 1. Compile the program:
    ```bash
-   g++ main.cpp -o main
+    g++ main.cpp func.cpp stream.cpp struct_func.cpp ui_controller.cpp -o main
+2. Then run main.exe inside src folder
